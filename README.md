@@ -1,7 +1,7 @@
 # NHLStatsScraper
 Pulls stats down from the NHL API and makes 'em crunchable for fantasy hockey picks.
 
-##To Do
+## To Do
 Things to add, in broad terms:
 1. Pull 2017-2018 stats for all players
 2. Organize into fantasy stats array
