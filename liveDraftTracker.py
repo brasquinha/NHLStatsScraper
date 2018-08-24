@@ -5,8 +5,8 @@ import sys
 
 players=list(csv.DictReader(open(sys.argv[1], 'r')))
 #some manual cleanup of stats
-intcolumns = ['G', 'A']
-floatcolumns = ['GRIT']
+intcolumns = ['GP', 'G', 'A', 'PIM',  'SOG', 'HIT', 'BLK', 'PPP', 'SHP', 'W', 'SO']
+floatcolumns = ['TOI', 'SVP', 'GAA']
 for player in players:
 	for col in intcolumns:
 		player[col]=int(player[col])
@@ -18,17 +18,25 @@ allPlayerNames = [player['FullName'] for player in players]
 allColumnNames=[str(key) for key in players[0].keys()]
 
 #Store team names
+#restrict to most recent team 
+for player in players: 
+	player['Team']=player['Team'][-3:] 
 allTeamNames = list(set([player['Team'] for player in players]))
 shownTeamNames = allTeamNames[:] #copy values, not by reference
 
-#Add field to make all players available to draft
+#Pythonify field for player draft tracking
 for player in players:
-	player['Available'] = True 
+	if player['Available'] == 'TRUE':
+		player['Available']=True
+	else:
+		player['Available']=False
 
 #Store all possible positions:
 allPositions=['RW', 'LW', 'C', 'D', 'G', 'S'] #S for skater
 #These are all the valid commands for this program
-allCommands=['rem', 'add', 'ls', 'thide', 'tshow']
+allCommands=['rem', 'add', 'ls', 'hide', 'show', 'saveas', 'def']
+
+playersToDisplay=30
 
 while True:
 	userInput=input('$$$>')
@@ -71,7 +79,7 @@ while True:
 						player['Available'] = True
 						print('Setting ' + playerMatch + ' as available to draft, and showing in list.')
 
-		elif commandMatch =='thide' or commandMatch == 'tshow':			
+		elif commandMatch =='hide' or commandMatch == 'show':			
 			#Hide or show a team from display
 			if len(userInput)==1:
 				print('Need 1+ argument for this command.')
@@ -80,11 +88,11 @@ while True:
 				teamMatch=process.extractOne(team, allTeamNames)
 				teamMatch=teamMatch[0]
 
-				if commandMatch == 'thide':
+				if commandMatch == 'hide':
 					if teamMatch in shownTeamNames:
 						shownTeamNames.remove(teamMatch)
 					print('Hiding players from team ' + teamMatch + ' in the draft list')
-				elif commandMatch == 'tshow':
+				elif commandMatch == 'show':
 					if teamMatch not in shownTeamNames:
 						shownTeamNames.append(teamMatch)
 					print('Showing players from team ' + teamMatch + ' in the draft list.')
@@ -123,10 +131,44 @@ while True:
 				displayString += ' ' + col.rjust(5) 
 			print(displayString)
 			#Print players. Pad strings to fixed lengths (ljust, rjust)
+			displayed=0
 			for player in thisDisplay:
 				if player['Available'] == True and player['Team'] in shownTeamNames and any(x in player['Position'] for x in posMatch):
-					#print(player)
+					#print player
 					displayString=player['FullName'].ljust(20)[-25:] + player['Position'].rjust(9)+player['Team'].rjust(5)
 					for col in sortcols:
 						displayString += ' ' + str(player[col]).rjust(5) 
 					print(displayString)
+					displayed+=1
+				if displayed >= playersToDisplay:
+					print('<....................... More players hidden>')
+					break
+		elif commandMatch == 'saveas':
+			filename = userInput[1]
+			if filename[-4:] is not '.csv':
+				filename=filename+'.csv'
+			
+			#pull fieldnames from the players list
+			outputFieldNames=list(players[0].keys())
+			with open(filename, 'w') as f:
+				for field in outputFieldNames:
+					f.write(field+',')
+				f.write('\n')
+				for player in players:
+					for field in outputFieldNames:
+						f.write(str(player[field])+',')
+					f.write('\n')
+			print('Output written to ' + filename)
+		elif commandMatch == 'def':
+			#Define new statistic. Parse out name and settings: 
+			stat=userInput[1]
+			if userInput[2]=='gp' or userInput[3]='gp':
+				GPScale=True
+			else:
+				GPScale=False
+			if userInput[2]=='z' or userInput[3]='z':
+				ZScale=True
+			else:
+				ZScale=False
+			#Evaluate the rest as a python function:
+			#FIGURE ME OUT
