@@ -135,7 +135,7 @@ while True:
 					#print player
 					displayString=player['FullName'].ljust(20)[-25:] + player['Position'].rjust(9)+player['Team'].rjust(5)
 					for col in sortcols:
-						displayString += ' ' + str(player[col]).rjust(4) 
+						displayString += ' ' + str(player[col]).rjust(4)[0:4] 
 					print(displayString)
 					displayed+=1
 				if displayed >= playersToDisplay:
@@ -184,8 +184,7 @@ while True:
 				displayString += ' ' + col.rjust(4) 
 			print(displayString)
 
-			for team in fantasyTeamMatch:				
-								
+			for team in fantasyTeamMatch:					
 				#PRINT TOTALS
 				fantasyTeamTotals=dict()
 				for col in sortcols:
@@ -196,5 +195,5 @@ while True:
 							fantasyTeamTotals[col] += player[col] 
 				displayString=team.ljust(15)
 				for col in sortcols:
-					displayString += ' ' + str(fantasyTeamTotals[col]).rjust(4) 
+					displayString += ' ' + str(fantasyTeamTotals[col]).rjust(4)[0:4] 
 				print(displayString)		
