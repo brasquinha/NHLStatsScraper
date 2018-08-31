@@ -159,16 +159,16 @@ while True:
 						f.write(str(player[field])+',')
 					f.write('\n')
 			print('Output written to ' + filename)
-		elif commandMatch == 'def':
-			#Define new statistic. Parse out name and settings: 
-			stat=userInput[1]
-			if userInput[2]=='gp' or userInput[3]='gp':
-				GPScale=True
-			else:
-				GPScale=False
-			if userInput[2]=='z' or userInput[3]='z':
-				ZScale=True
-			else:
-				ZScale=False
-			#Evaluate the rest as a python function:
-			#FIGURE ME OUT
+		#elif commandMatch == 'def':
+		#	#Define new statistic. Parse out name and settings: 
+		#	stat=userInput[1]
+		#	if userInput[2]=='gp' or userInput[3]='gp':
+		#		GPScale=True
+		#	else:
+		#		GPScale=False
+		#	if userInput[2]=='z' or userInput[3]='z':
+		#		ZScale=True
+		#	else:
+		#		ZScale=False
+		#	#Evaluate the rest as a python function:
+		#	#FIGURE ME OUT
