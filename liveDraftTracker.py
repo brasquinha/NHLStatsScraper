@@ -7,18 +7,14 @@ import json
 config=json.load(open('config.json', 'r'))
 players=list(csv.DictReader(open(sys.argv[1], 'r')))
 #Store all fantasy team names (eg teams to draft to)
-allFantasyTeams=['Brian', 'Paul', 'Ryan', 'Matt', 'Meaghan', 'Dan', 'Jeff', 'Ian', 'Andrew', 'DJ', 'Kenneth', 'Rask']
 allFantasyTeams=config['allFantasyTeams']
 allFantasyTeams.append('all')
-defaultStats=['G', 'A', 'PIM', 'SOG', 'HIT', 'BLK', 'PPP', 'SHP']
-defaultStats=config['defaultStats']
 
 #Store all possible positions:
 allPositions=['RW', 'LW', 'C', 'D', 'G', 'S'] #S for skater
 
+defaultStats=config['defaultStats']
 #some manual cleanup of stats
-intcolumns = ['GP', 'G', 'A', 'PIM',  'SOG', 'HIT', 'BLK', 'PPP', 'SHP', 'W', 'SO']
-floatcolumns = ['TOI', 'SVP', 'GAA']
 intcolumns=config['intcolumns']
 floatcolumns=config['floatcolumns']
 for player in players:
