@@ -1,0 +1,6 @@
+{
+	"allFantasyTeams":["Brian", "Paul", "Ryan", "Matt", "Meaghan", "Dan", "Jeff", "Ian", "Andrew", "DJ", "Kenneth", "Rask"],
+	"defaultStats":["G", "A", "PIM", "SOG", "HIT", "BLK", "PPP", "SHP"],
+	"intcolumns":["GP", "G", "A", "PIM",  "SOG", "HIT", "BLK", "PPP", "SHP", "W", "SO"],
+	"floatcolumns":["TOI", "SVP", "GAA"]
+}	
