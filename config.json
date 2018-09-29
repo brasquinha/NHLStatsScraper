@@ -1,5 +1,6 @@
 {
-	"allFantasyTeams":["Brian", "Paul", "Ryan", "Matt", "Meaghan", "Dan", "Jeff", "Ian", "Andrew", "DJ", "Kenneth", "Rask"],
+	"RealallFantasyTeams":["Brian", "Paul", "Ryan", "Matt", "Meaghan", "Dan", "Jeff", "Ian", "Andrew", "DJ", "Kenneth", "Rask"],
+	"allFantasyTeams":["Me", "A", "B", "C", "D", "E", "F", "G"],
 	"defaultStats":["zALL","zSCO", "zGOO", "G", "A","SOG", "PIM", "HIT", "BLK", "PPP", "GP"],
 	"defaultGStats":["zGTD", "W", "GAA", "SVP", "SO", "GP"],
 	"intcolumns":["GP", "rG", "rA", "rPIM",  "rSOG", "rHIT", "rBLK", "rPPP", "rSHP", "rW", "rSO", "r+/-"],

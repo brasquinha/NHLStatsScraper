@@ -37,7 +37,7 @@ allTeamNames = list(set([player['Team'] for player in players]))
 shownTeamNames = allTeamNames[:] #copy values, not by reference
 
 #These are all the valid commands for this program
-allCommands=['rem', 'add', 'ls', 'hide', 'show', 'tls', 'saveas']
+allCommands=['rem', 'add', 'ls', 'hide', 'show', 'tls', 'saveas', 'mingp']
 
 playersToDisplay=30
 
@@ -163,6 +163,11 @@ while True:
 						f.write(str(player[field])+',')
 					f.write('\n')
 			print('Output written to ' + filename)
+		elif commandMatch == 'mingp':
+			newMinimum=userInput[1]
+			if newMinimum.isdigit():
+				minimumGP=int(newMinimum)
+				print('Minimum GP set to ' + str(minimumGP))
 		elif commandMatch == 'tls':
 			#List fantasy teams
 			fantasyTeam=userInput[1]
