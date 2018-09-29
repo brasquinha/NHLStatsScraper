@@ -1,6 +1,8 @@
 {
 	"allFantasyTeams":["Brian", "Paul", "Ryan", "Matt", "Meaghan", "Dan", "Jeff", "Ian", "Andrew", "DJ", "Kenneth", "Rask"],
-	"defaultStats":["G", "A", "PIM", "SOG", "HIT", "BLK", "PPP", "SHP"],
-	"intcolumns":["GP", "G", "A", "PIM",  "SOG", "HIT", "BLK", "PPP", "SHP", "W", "SO"],
-	"floatcolumns":["TOI", "SVP", "GAA"]
+	"defaultStats":["zALL","zSCO", "zGOO", "G", "A","SOG", "PIM", "HIT", "BLK", "PPP", "GP"],
+	"defaultGStats":["zGTD", "W", "GAA", "SVP", "SO", "GP"],
+	"intcolumns":["GP", "rG", "rA", "rPIM",  "rSOG", "rHIT", "rBLK", "rPPP", "rSHP", "rW", "rSO", "r+/-"],
+	"floatcolumns":["TOI", "SVP", "GAA", "G", "A", "PIM",  "SOG", "HIT", "BLK", "PPP", "SHP", "W", "SO", "zG", "zA", "z+/-", "zPIM", "zTOI", "zSOG", "zHIT", "zBLK", "zPPP", "zSHP", "zW", "zSO", "zALL", "zSCO", "zGOO", "zGTD"],
+	"minGP":41
 }	

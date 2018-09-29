@@ -14,6 +14,8 @@ allFantasyTeams.append('all')
 allPositions=['RW', 'LW', 'C', 'D', 'G', 'S'] #S for skater
 
 defaultStats=config['defaultStats']
+defaultGoalieStats=config['defaultGStats']
+minimumGP=config['minGP']
 #some manual cleanup of stats
 intcolumns=config['intcolumns']
 floatcolumns=config['floatcolumns']
@@ -101,7 +103,7 @@ while True:
 				print('Showing players from team ' + teamMatch + ' in the draft list.')
 			
 		elif commandMatch == 'ls':
-			#List players for drafting. Next arguments are column names. JUST ONE FOR NOW
+			#List players for drafting. Next arguments are column names.
 			sortcols=list()
 			pos=userInput[1]
 			posMatch=process.extractOne(pos, allPositions)
@@ -119,7 +121,11 @@ while True:
 				sortcols.append(thisCol[0])
 			
 			if len(sortcols)==0:
-				sortcols=defaultStats
+				#print(posMatch)
+				if posMatch[0]=='G':
+					sortcols=defaultGoalieStats
+				else:
+					sortcols=defaultStats
 			
 			#Sort list as per user request. * unpacks the list (equivalent to listing out the entries individually)
 			thisDisplay = sorted(players, key=itemgetter(*sortcols), reverse=True) 
@@ -131,7 +137,7 @@ while True:
 			#Print players. Pad strings to fixed lengths (ljust, rjust)
 			displayed=0
 			for player in thisDisplay:
-				if player['FantasyTeam'] == 'None' and player['Team'] in shownTeamNames and any(x in player['Position'] for x in posMatch):
+				if player['FantasyTeam'] == 'None' and player['Team'] in shownTeamNames and any(x in player['Position'] for x in posMatch) and player['GP']>=minimumGP:
 					#print player
 					displayString=player['FullName'].ljust(20)[-25:] + player['Position'].rjust(9)+player['Team'].rjust(5)
 					for col in sortcols:
